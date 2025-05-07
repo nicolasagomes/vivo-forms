@@ -1,0 +1,41 @@
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f8f9fa;
+ }
+ .container {
+   max-width: 800px;
+   margin: auto;
+   padding: 20px;
+ }
+ h1, h2 {
+   margin-top: 20px;
+ }
+ .navbar {
+   margin-bottom: 20px;
+   background-color: #0033a0;
+ }
+ .input-group {
+   width: 300px;
+ }
+ .input-group-append .input-group-text {
+   background-color: #0033a0;
+   color: white;
+ }
+ .btn-primary {
+   background-color: #0033a0;
+   border-color: #0033a0;
+ }
+ .btn-secondary {
+   background-color: #0057b8;
+   border-color: #0057b8;
+ }
+ .table-striped tbody tr:nth-of-type(odd) {
+   background-color: rgba(0, 51, 160, 0.1);
+ }
+ .card {
+   margin-top: 20px;
+   margin-bottom: 20px;
+ }
+ 

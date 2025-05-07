@@ -1,133 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Sugestão - Governança e Performace</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Sugestão - Governança e Performace</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Tela de Login -->
-    <div id="loginScreen" class="container mt-4">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+  <!-- Tela de Login -->
+  <div id="loginScreen" class="container mt-4">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+  <!-- Tela de Cadastro -->
+  <div id="registerScreen" class="container mt-4" style="display: none;">
+    <h2>Cadastro</h2>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="newUsername">Username:</label>
+        <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Password:</label>
+        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select class="form-control" id="role" name="role" required>
+          <option value="member">Member</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+  <!-- Navbar superior -->
+  <nav class="navbar navbar-light bg-light shadow-sm" id="mainNavbar" style="display: none;">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="logo-vivo.png" alt="Logo Vivo" height="40">
+      </a>
+      <div class="input-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search by name">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+      <div class="ml-auto">
+        <span id="loggedInUser" class="mr-3"></span>
+        <button id="registerButton" class="btn btn-secondary" style="display: none;">Register</button>
+        <button id="logoutButton" class="btn btn-danger">Logout</button>
+      </div>
     </div>
-
-    <!-- Tela de Cadastro -->
-    <div id="registerScreen" class="container mt-4" style="display: none;">
-        <h2>Cadastro</h2>
-        <form id="registerForm">
-            <div class="form-group">
-                <label for="newUsername">Username:</label>
-                <input type="text" class="form-control" id="newUsername" name="newUsername" required>
-            </div>
-            <div class="form-group">
-                <label for="newPassword">Password:</label>
-                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-            </div>
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <select class="form-control" id="role" name="role" required>
-                    <option value="member">Member</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+  </nav>
+  <div class="container mt-4" id="mainContent" style="display: none;">
+    <h2>Formulário de Sugestões</h2>
+    <form id="suggestionForm">
+      <div class="form-group">
+        <label for="category">Tipo:</label>
+        <input type="text" class="form-control" id="tipo" name="tipo" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Titulo:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="genre">Gênero:</label>
+        <input type="text" class="form-control" id="genero" name="genero" required>
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descriçaõ:</label>
+        <input type="textarea" class="form-control" id="descricao" name="descricao" required>
+      </div>
+      <div class="form-group">
+        <label for="link">Link:</label>
+        <input type="url" class="form-control" id="link" name="link" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar Sugestão</button>
+    </form>
+    <h4 class="mt-4">Tabela de Sugestões</h4>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total de Sugestões</h5>
+        <p class="card-text" id="totalItems">0</p>
+      </div>
     </div>
-
-    <!-- Navbar superior -->
-    <nav class="navbar navbar-light bg-light shadow-sm" id="mainNavbar" style="display: none;">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="logo-vivo.png" alt="Logo Vivo" height="40">
-            </a>
-            <div class="input-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Search by name">
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-            </div>
-            <div class="ml-auto">
-                <span id="loggedInUser" class="mr-3"></span>
-                <button id="registerButton" class="btn btn-secondary" style="display: none;">Register</button>
-                <button id="logoutButton" class="btn btn-danger">Logout</button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container mt-4" id="mainContent" style="display: none;">
-        <h2>Formulário de Sugestões</h2>
-        <form id="suggestionForm">
-            <div class="form-group">
-                <label for="category">Tipo:</label>
-                <input type="text" class="form-control" id="tipo" name="tipo" required>
-            </div>
-            <div class="form-group">
-                <label for="name">Titulo:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="genre">Gênero:</label>
-                <input type="text" class="form-control" id="genero" name="genero" required>
-            </div>
-            <div class="form-group">
-                <label for="link">Link:</label>
-                <input type="url" class="form-control" id="link" name="link" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Adicionar Sugestão</button>
-        </form>
-
-        <h4 class="mt-4">Tabela de Sugestões</h4>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Total de Sugestões</h5>
-                <p class="card-text" id="totalItems">0</p>
-            </div>
-        </div>
-        <table class="table table-striped" id="suggestionsTable">
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Name</th>
-                    <th>Gênero</th>
-                    <th>Link</th>
-                    <th>Acão</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-
-        <h2 class="mt-4">Gráficos Gerados</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <canvas id="categoryChart"></canvas>
-            </div>
-            <div class="col-md-6">
-                <canvas id="genreChart" class="mt-4"></canvas>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <canvas id="ratingChart"></canvas>
-            </div>
-        </div>
+    <table class="table table-striped" id="suggestionsTable">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Name</th>
+          <th>Gênero</th>
+          <th>Descrição</th>
+          <th>Link</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <h2 class="mt-4">Suggestions Chart</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <canvas id="categoryChart"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="genreChart" class="mt-4"></canvas>
+      </div>
     </div>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="script.js"></script>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <canvas id="ratingChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <!-- Tabela de Usuários -->
+  <div class="container mt-4" id="userTable" style="display: none;">
+    <h2>Tabela de Usuários</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+      </tbody>
+    </table>
+  </div>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
